@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <DynamicFavicon />
-      <body className="bg-background">
+      <body className="bg-primary-background text-foreground">
         <ReactQueryProvider>
           {children}
           <Toaster position="top-right" />

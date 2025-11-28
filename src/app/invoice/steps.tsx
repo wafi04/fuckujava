@@ -1,20 +1,23 @@
 import { Wallet, CreditCard, LoaderIcon, CheckCircle } from "lucide-react";
 
+
 export function Steps({ status }: { status: string }) {
   // Helper function to determine step status
   const getStepStatus = (stepName: string) => {
-    const steps = [ "pending", "paid", "process", "success"];
+    const steps = ["pending", "paid", "process", "success"];
     const currentIndex = steps.indexOf(status);
     const stepIndex = steps.indexOf(stepName);
-    
-    if (stepIndex < currentIndex) return "success";
-    if (stepIndex === currentIndex) return "current";
-    return "upcoming";
+
+    if (stepIndex < currentIndex) return "success"; // sudah lewat
+    if (stepIndex === currentIndex) return "current"; // aktif sekarang
+    if (stepIndex === currentIndex + 1) return "next"; // tujuan berikutnya
+    return "upcoming"; // sisanya
   };
+
 
   const getStepStyles = (stepName: string) => {
     const stepStatus = getStepStatus(stepName);
-    
+
     switch (stepStatus) {
       case "success":
         return {
@@ -22,26 +25,38 @@ export function Steps({ status }: { status: string }) {
           circle: "bg-green-500 group-hover:bg-green-600 shadow-md",
           icon: "text-white",
           title: "text-green-600",
-          description: "text-gray-600"
+          description: "text-gray-600",
         };
+
       case "current":
         return {
-          line: "bg-blue-200",
+          line: "bg-green-300",
+          circle: "border-2 border-green-600 bg-white shadow-md group-hover:bg-green-50",
+          icon: "text-green-600",
+          title: "text-green-700",
+          description: "text-gray-600",
+        };
+
+      case "next":
+        return {
+          line: "bg-blue-300",
           circle: "border-2 border-blue-500 bg-white shadow-md group-hover:bg-blue-50",
           icon: "text-blue-500",
           title: "text-blue-600",
-          description: "text-gray-600"
+          description: "text-gray-600",
         };
+
       default:
         return {
           line: "bg-gray-300",
           circle: "border-2 border-gray-400 bg-white shadow-md group-hover:bg-gray-50",
           icon: "text-gray-500",
           title: "text-gray-600",
-          description: "text-gray-500"
+          description: "text-gray-500",
         };
     }
   };
+
   const step1Styles = getStepStyles("pending");
   const step2Styles = getStepStyles("paid");
   const step3Styles = getStepStyles("process");
@@ -71,7 +86,7 @@ export function Steps({ status }: { status: string }) {
           </span>
         </div>
       </li>
-      
+
       {/* Step 2: Pembayaran */}
       <li className="pb-5 relative w-full">
         <div
@@ -92,21 +107,21 @@ export function Steps({ status }: { status: string }) {
               Pembayaran
             </span>
             <span className={`text-xs ${step2Styles.description}`}>
-              {getStepStatus("paid") === "current" ? "Silakan melakukan pembayaran" : 
-               getStepStatus("paid") === "success" ? "Pembayaran berhasil" : 
-               "Menunggu pembayaran"}
+              {getStepStatus("paid") === "current" ? "Silakan melakukan pembayaran" :
+                getStepStatus("paid") === "success" ? "Pembayaran berhasil" :
+                  "Menunggu pembayaran"}
             </span>
           </span>
         </div>
       </li>
-      
+
       {/* Step 3: Sedang Di Proses */}
       <li className="pb-5 relative w-full">
         <div
           className={`absolute left-0 top-4 -ml-px mt-0.5 h-0.5 w-full ${step3Styles.line}`}
           aria-hidden="true"
         ></div>
-        <div 
+        <div
           className="group relative flex flex-col items-center"
           aria-current={getStepStatus("process") === "current" ? "step" : undefined}
         >
@@ -120,21 +135,21 @@ export function Steps({ status }: { status: string }) {
               Sedang Di Proses
             </span>
             <span className={`text-xs ${step3Styles.description}`}>
-              {getStepStatus("process") === "current" ? "Pembelian sedang dalam proses..." : 
-               getStepStatus("process") === "success" ? "Proses selesai" : 
-               "Menunggu proses"}
+              {getStepStatus("process") === "current" ? "Pembelian sedang dalam proses..." :
+                getStepStatus("process") === "success" ? "Proses selesai" :
+                  "Menunggu proses"}
             </span>
           </span>
         </div>
       </li>
-      
+
       {/* Step 4: Transaksi Selesai */}
       <li className="relative w-full">
         <div
           className={`absolute left-0 top-4 -ml-px mt-0.5 h-0.5 w-full ${step4Styles.line}`}
           aria-hidden="true"
         ></div>
-        <div 
+        <div
           className="group relative flex flex-col items-end"
           aria-current={getStepStatus("success") === "current" ? "step" : undefined}
         >
@@ -148,8 +163,8 @@ export function Steps({ status }: { status: string }) {
               Transaksi Selesai
             </span>
             <span className={`text-xs ${step4Styles.description}`}>
-              {getStepStatus("success") === "success" ? "Transaksi telah berhasil dilakukan" : 
-               "Menunggu penyelesaian"}
+              {getStepStatus("success") === "success" ? "Transaksi telah berhasil dilakukan" :
+                "Menunggu penyelesaian"}
             </span>
           </span>
         </div>

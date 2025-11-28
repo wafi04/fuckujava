@@ -1,14 +1,23 @@
-import { Metadata } from "next";
-import { api } from "@/lib/api";
-import { API_RESPONSE } from "@/lib/types";
-import { notFound } from "next/navigation";
+import { AuthenticationLayout } from "@/components/layouts/AuthenticationLayout";
 import { CategoryWithProducts } from "@/features/categories/types";
 import OrderLayout from "@/features/orders/components/Order";
+import { API_RESPONSE } from "@/lib/types";
+import axios from "axios";
+import { FolderX } from "lucide-react";
+import { Metadata } from "next";
 
 async function GetDataCategory(code: string) {
   try {
-    const req = await api.get<API_RESPONSE<CategoryWithProducts>>(
-      `/categories/code?subName=${code}`
+    const req = await axios.get<API_RESPONSE<CategoryWithProducts>>(
+      `${process.env.API_URL}/categories-reseller?subName=${code}`,
+      {
+        headers: {
+          "Origin": process.env.SITE_URL,
+          "Content-Type": "application/json",
+          Branchname: process.env.BRANCH_NAME,
+          Branchcode: process.env.BRANCH_CODE,
+        },
+      }
     );
     return req.data.data;
   } catch (error) {
@@ -76,9 +85,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const data = await GetDataCategory(params.slug);
 
   // Handle jika data tidak ditemukan
+
   if (!data) {
-    notFound();
+    return (
+      <AuthenticationLayout>
+        <div className="min-h-screen flex flex-col items-center justify-center gap-3 text-gray-600">
+          <FolderX className="w-12 h-12" />
+          <p className="text-lg">Kategori tidak tersedia.</p>
+        </div>
+      </AuthenticationLayout>
+    );
   }
+
   return (
     <>
       {/* Schema.org structured data untuk SEO */}
@@ -100,7 +118,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         }}
       />
 
-  
+
       <OrderLayout params={params.slug} categoryData={data} />
     </>
   );

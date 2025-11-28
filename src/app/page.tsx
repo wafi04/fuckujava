@@ -7,7 +7,7 @@ import { SectionCategory } from "@/features/categories/components/sectionCategor
 
 export default function Home() {
   return (
-    <AuthenticationLayout className="bg-background relative max-w-7xl flex flex-col space-y-10 w-full items-center  container">
+    <AuthenticationLayout className=" relative max-w-7xl flex flex-col space-y-10 w-full items-center  container">
       <MainBanner />
       <CardCategoriesPopular />
       <SectionCategory />

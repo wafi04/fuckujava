@@ -4,49 +4,50 @@
 
 @layer base {
   :root {
-    /* Background - Orange sangat muda dengan sedikit hint warna */
-    --background: 30 40% 98%;
-    --foreground: 30 70% 15%;
+    /* Background - Off-white dengan hint warm */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
 
-    /* Card - Orange lebih terang dari background */
-    --card: 30 50% 99%;
-    --card-foreground: 30 70% 12%;
+    /* Card - Pure white untuk kontras */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
     /* Popover */
-    --popover: 30 50% 99%;
-    --popover-foreground: 30 70% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Primary - Orange Medium yang vibrant */
-    --primary: 30 90% 60%;
+    /* Primary - Orange Vibrant */
+    --primary: 30 95% 55%;
+    --primary-background: 0 0% 98%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Deep Orange / Burnt Orange */
-    --secondary: 15 85% 55%;
+    /* Secondary - Charcoal/Dark Gray (hampir hitam) */
+    --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Muted - Orange Subtle untuk elemen less prominent */
-    --muted: 30 40% 94%;
-    --muted-foreground: 30 25% 50%;
+    /* Muted - Light gray untuk subtle elements */
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent - Orange Soft untuk highlights */
-    --accent: 30 60% 88%;
-    --accent-foreground: 30 70% 25%;
+    /* Accent - Orange Light untuk highlights */
+    --accent: 30 100% 95%;
+    --accent-foreground: 0 0% 15%;
 
-    /* Destructive - Merah coral (bisa tetap atau ganti) */
+    /* Destructive - Red untuk errors */
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Border & Input - Orange Light */
-    --border: 30 30% 88%;
-    --input: 30 30% 88%;
-    --ring: 30 90% 60%;
+    /* Border & Input - Neutral gray */
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 30 95% 55%;
 
-    /* Charts - Orange Palette yang harmonis */
-    --chart-1: 30 90% 60%; /* Orange utama */
-    --chart-2: 15 85% 55%; /* Burnt Orange */
-    --chart-3: 40 85% 58%; /* Golden Orange */
-    --chart-4: 25 95% 63%; /* Bright Orange */
-    --chart-5: 35 80% 65%; /* Peach Orange */
+    /* Charts - Orange & Black Palette */
+    --chart-1: 30 95% 55%; /* Orange Primary */
+    --chart-2: 0 0% 20%; /* Charcoal Black */
+    --chart-3: 25 100% 60%; /* Bright Orange */
+    --chart-4: 0 0% 35%; /* Medium Gray */
+    --chart-5: 35 100% 65%; /* Light Orange */
 
     --radius: 0.5rem;
   }
@@ -117,11 +118,9 @@
   input[type="number"] {
     -moz-appearance: textfield;
   }
-
-  body {
-    font-family: "Poppins", sans-serif;
-    @apply bg-background text-foreground;
-  }
+}
+body {
+  font-family: "Poppins", sans-serif;
 }
 
 @keyframes float {
@@ -135,11 +134,3 @@
     transform: translateY(0px);
   }
 }
-
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-  }
-} */
