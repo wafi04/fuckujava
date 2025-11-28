@@ -1,0 +1,59 @@
+export interface UpsertWebSettings {
+  website_name: string;
+  website_tagline: string;
+  website_description: string;
+  website_keywords: string;
+  logo_url: string;
+  logo_dark_url: string;
+  favicon_url: string;
+  business_name?: string;
+  business_address?: string;
+  business_phone?: string;
+  business_email?: string;
+  business_hours?: string;
+  url_facebook?: string;
+  url_instagram?: string;
+  url_twitter?: string;
+  url_youtube?: string;
+  url_tiktok?: string;
+  url_whatsapp?: string;
+  whatsapp_number?: string;
+  whatsapp_message?: string;
+  url_saluran_whatsapp?: string;
+  footer_text?: string;
+  copyright_text?: string;
+  show_social_links: boolean;
+  show_contact_info: boolean;
+}
+
+export interface WebSettings {
+  id: number;
+  branchId: number;
+  website_name: string;
+  website_tagline: string;
+  website_description: string;
+  website_keywords: string;
+  logo_url: string;
+  logo_dark_url: string;
+  favicon_url: string;
+  business_name?: string;
+  business_address?: string;
+  business_phone?: string;
+  business_email?: string;
+  business_hours?: string;
+  url_facebook?: string;
+  url_instagram?: string;
+  url_twitter?: string;
+  url_youtube?: string;
+  url_tiktok?: string;
+  url_whatsapp?: string;
+  whatsapp_number?: string;
+  whatsapp_message?: string;
+  url_saluran_whatsapp?: string;
+  footer_text?: string;
+  copyright_text?: string;
+  show_social_links: boolean;
+  show_contact_info: boolean;
+  created_at: string;
+  updated_at: string;
+}

@@ -1,0 +1,19 @@
+services:
+  pro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pro
+    restart: always
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
+    networks:
+      - pro-network
+
+networks:
+  pro-network:
+    driver: bridge
